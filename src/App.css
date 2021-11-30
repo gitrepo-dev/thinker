@@ -1,0 +1,111 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.form-control{
+    min-width: 100%;
+    border-radius: 5px;
+}
+.heading{
+    font-family: 'Dancing Script', cursive;
+}
+
+.full-page-preview{
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    font-weight: 500;
+    background: #e7e7e7;
+    position: absolute;
+    top: 60px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+}
+.btn-primary{
+    background-color: #635ab5;
+}
+.btn-primary:hover{
+    background-color: #1e1850;
+}
+.bg-primary{
+    background-color: #635ab5;
+}
+
+.text-primary{
+    color: #635ab5;
+}
+
+.login-img{
+    max-height: 500px;
+}
+.box-shadow{
+    box-shadow: 0px 0px 3px 1px #d5cdcd;
+}
+
+.overlay{
+    background: #ccc;
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 99;    
+    overflow-y: scroll;
+}
+
+.form{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50px;
+}
+
+
+.file-label {
+    background-color: rgb(49 77 245);
+    color: white;
+    padding: 0.5rem;
+    font-family: sans-serif;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 150px;
+  }
+  #file-chosen{
+    margin-left: 0.3rem;
+    font-family: sans-serif;
+    margin-top: 15px;
+  }
+  .real-file{
+    position: absolute;
+    left: 0;
+    cursor: pointer;
+    top: 13px;
+  }
+  .input-wrap{
+      width: 150px;
+      opacity: 0;
+      position: relative;
+  }
+  .bg-gray{
+      background : #e7e7e7;
+  }
+  .sigle-page-post{
+      margin-top: 110px;
+      margin-bottom: 110px;
+  }
+
+  .page-btn{
+    background: red;
+    padding: 10px;
+    font-size: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    display: block;
+    margin-bottom: 200px;
+  }
