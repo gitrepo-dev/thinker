@@ -7,6 +7,8 @@ import { getPostbyID } from '../redux/postSlice'
 import { useQuery } from '@apollo/client'
 import { GET_BLOG_BY_ID } from '../graphql/getPosts'
 import Title from '../assets/images/title.png'
+import leftarrow from '../assets/images/left-arrow.png'
+import {Link} from 'react-router-dom'
 
 export default function SinglePage() {
 
@@ -27,7 +29,6 @@ export default function SinglePage() {
     useEffect(() => {
         dispatch(getPostbyID(data?.getPostById))
     }, [data])
-
 
     if (loading) {
         return (
@@ -50,23 +51,30 @@ export default function SinglePage() {
     else {
         return (
             <div>
+                <Link to="/thinker" className="max-w-6xl mx-auto block">
+                    <img src={leftarrow} alt="left-arrow" className="pb-5 mr-auto mt-24 w-8 cursor-pointer" />
+                </Link>
                 <Header />
                 {
-                    post && post.map((value, index) => {
+                    post && post?.map((value, index) => {
                         return (
-                            <div className="max-w-xl mt-5 px-0 rounded-md mx-auto sigle-page-post" key={index}>
-                                <div className="px-4 border-2 border-gray-300 pt-5">
-                                    <h2 className="text-primary mb-3 font-bold flex items-center">
-                                        <span className="rounded-full h-14 w-14 flex items-center justify-center bg-primary text-white text-lg mr-2">{user?.charAt(0)?.toUpperCase()}</span>
-                                        <span className="ml-2">
-                                        {value?.title}
-                                        <span className="flex items-center max-w-lg mt-1 text-xs text-gray-500">
-                                            <span className="mr-1">Follow . </span> <img src={Title} alt={value?.title} style={{ width: '15px' }} className="mr-2" /></span>
-                                    </span>
-                                    </h2>
-                                    <small className="block text-gray-700 mb-5">{value?.description}</small>
+                            <div className="max-w-6xl mt-0 border-2 border-gray-300 mx-auto" key={index}>
+                                <div className="grid md:grid-cols-2 gap-10">
+                                    <div className="mb-5 md:mb-0">
+                                        <img src={value?.image} className="w-full h-auto" alt={value?.title} />
+                                    </div>
+                                    <div className="p-5 md:p-10">
+                                        <h2 className="text-primary mb-7 font-bold flex items-center">
+                                            <span className="rounded-full h-14 w-14 flex items-center justify-center bg-primary text-white text-lg mr-2">{user?.charAt(0)?.toUpperCase()}</span>
+                                            <span className="ml-2">
+                                                {value?.title}
+                                                <span className="flex items-center max-w-lg mt-1 text-xs text-gray-500">
+                                                    <span className="mr-1">Follow . </span> <img src={Title} alt={value?.title} style={{ width: '15px' }} className="mr-2" /></span>
+                                            </span>
+                                        </h2>
+                                        <p className="ml-2 text-gray-500">{value?.description} </p>
+                                    </div>
                                 </div>
-                                <img src={value?.image} className="w-full h-auto" alt={value?.title} />
                             </div>
                         )
                     })

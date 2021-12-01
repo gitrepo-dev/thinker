@@ -13,7 +13,7 @@ import Pagination from './Pagination'
 export default function Posts() {
 
     // get all post from apis
-    const { loading, data } = useQuery(GET_POSTS)
+    const { loading, data, refetch } = useQuery(GET_POSTS)
 
     //  get and reverse the posts
     const posts = useSelector(state => state?.post?.posts)
@@ -22,17 +22,12 @@ export default function Posts() {
     // pagination posts
     const currentPosts = useSelector(state => state?.post?.currentPost)
 
-
     //  dispatch action to redux toolkit to update the redux store
     const dispatch = useDispatch()
     useEffect(() => {
+        refetch()
         dispatch(getPosts(data?.getAllPosts))
     }, [data])
-
-    // link share commet 
-    // const likeNumber = Math.floor((Math.random() * 100) + 1);
-    const commentNumber = Math.floor((Math.random() * 100) + 2);
-    const shareNumber = Math.floor((Math.random() * 100) + 2);
 
     // while fetching data from  api loading true
     if (loading) {
@@ -59,7 +54,7 @@ export default function Posts() {
                 {currentPosts && currentPosts.length !== 0 ? currentPosts && currentPosts?.map((value, index) => {
                     return (
                         <div className="max-w-xl mt-5 px-0 rounded-md mx-auto mb-3 md:mb-10 bg-white" key={index}>
-                            <Link to={`/blog/${value.id}`}>
+                            <Link to={`/blog/${value?.id}`}>
                                 <div className="px-4 border-2 border-gray-300 pt-5">
                                     <h2 className="text-primary mb-3 font-bold flex items-center">
                                         <span className="rounded-full h-14 w-14 flex items-center justify-center bg-primary text-white text-lg mr-2">{value?.postedby?.charAt(0)?.toUpperCase()}</span>
@@ -69,7 +64,7 @@ export default function Posts() {
                                                 <span className="mr-1">Follow . </span> <img src={Title} alt={value?.title} style={{ width: '15px' }} className="mr-2" /></span>
                                         </span>
                                     </h2>
-                                    <small className="block text-gray-700 mb-5">{value?.description}</small>
+                                    <small className="block text-gray-700 mb-5 truncate">{value?.description}</small>
                                 </div>
                                 <img src={value?.image} className="w-full h-auto" alt={value?.title} />
                                 <div className="flex justify-between items-center py-4 px-5 border-2 border-gray-300">

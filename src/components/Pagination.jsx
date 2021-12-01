@@ -9,14 +9,14 @@ export default function Pagination({ postArry }) {
     const [pagination, setPagination] = useState({
         currentPage: 1,
         currentPost: [],
-        postPerPage: 6,
+        postPerPage: 4,
     })
 
     // dispatch the action when change pagination props
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getPaginationPosts(pagination?.currentPost))
-    }, [pagination?.currentPage, pagination?.currentPost?.length, pagination?.postPerPage, postArry?.length])
+    }, [pagination?.currentPage, postArry?.length])
 
     // // declare the variables....
     const indexOfLastPost = pagination?.currentPage * pagination?.postPerPage;

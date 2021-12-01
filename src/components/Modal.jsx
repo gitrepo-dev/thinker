@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useMutation } from '@apollo/client'
 import { CREATE_POST } from '../graphql/mutation'
 import { updatePosts } from '../redux/postSlice'
@@ -39,6 +39,20 @@ export default function Model({ behave, onClick }) {
     }
 
 
+    useEffect(() => {
+        if (data?.createPost) {
+            dispatch(updatePosts({
+                id: data?.createPost?.id,
+                title: data?.createPost?.title,
+                description: data?.createPost?.description,
+                image: data?.createPost?.image,
+                postedby: data?.createPost?.postedby,
+                timestamp: data?.createPost?.timestamp
+            }))
+            setLoading(false)
+        }
+    }, [data])
+
 
     const formIsValid = () => {
         let objError = {};
@@ -54,8 +68,6 @@ export default function Model({ behave, onClick }) {
     };
 
     const [fileNotFound, setFileNotFound] = useState(false)
-
-
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -86,14 +98,6 @@ export default function Model({ behave, onClick }) {
                                 postedby: user
                             },
                         })
-
-                        dispatch(updatePosts({
-                            title: title.value,
-                            description: description.value,
-                            image: json.url,
-                            postedby: "jay"
-                        }))
-                        setLoading(false)
                         setFile('')
                         removeFileName()
                         setState({

@@ -9,7 +9,7 @@ import { Provider } from 'react-redux';
 
 // setting up apollo client
 const client = new ApolloClient({
-  uri: "http://localhost:5000/api",
+  uri: "https://thinker-app-api.herokuapp.com/api",
   cache: new InMemoryCache()
 })
 
