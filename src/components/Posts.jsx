@@ -27,7 +27,7 @@ export default function Posts() {
     useEffect(() => {
         refetch()
         dispatch(getPosts(data?.getAllPosts))
-    }, [data])
+    }, [data, data?.getAllPosts])
 
     // while fetching data from  api loading true
     if (loading) {
